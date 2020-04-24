@@ -1,0 +1,19 @@
+name: VoteNigth
+version: 0.1
+author: Arthurdw (Xiler)
+main: net.xiler.mc.votenight.Main
+description: A simple way to let your members skip a night. Created by Arthurdw!
+
+commands:
+  skip:
+    aliases:
+      - votenight
+      - vn
+      - nskip
+    description: Vote to skip the night.
+  forceskip:
+    aliases:
+      - fskip
+      - fnskip
+      - fsk
+    description: Force skip a night.

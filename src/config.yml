@@ -1,0 +1,33 @@
+prefix: '&8[&c&lVote&6&lNight&8] &r'
+
+worlds:
+  - 'world'
+
+perms:
+  vote: VN.vote
+  admin:
+    forceskip: VN.forceskip
+    reload: VN.reload
+
+messages:
+  vote:
+    - '&7Oh, seems like its night!'
+    - '&7Would you like to skip to &edaytime&7?'
+    - '&7If so use &a/skip&7 to enter your vote!'
+    - '&7There are {votes} required to skip the night!'
+  day:
+    - '&7Well its hard to skip the night if its day!'
+  noperms:
+    - '&x&lOops...&7 It doesn''t look like you have enough permission to perform that action!'
+  success:
+    - '&7You &asuccessfully&7 voted to skip the night!'
+  skipping:
+    - '&aSkipping&7 the night as &d{totalvoted}&7/&5{totalplayers}&7 players voted to skip the night!'
+  notskipping:
+    - '&4Not skipping&7 the night as not enough players voted! &o(&d&o{totalvoted}&7&o/&5&o{totalplayers}&7&o)'
+  forceskip:
+    - '&aSuccessfully&7 skipped the night as this was requested by an administrator.'
+  disabled:
+    - '&c&lOops...  &7It seems like that command isn''t available in this world!'
+  alreadyvoted:
+    - '&7You already voted to skip the night!'
