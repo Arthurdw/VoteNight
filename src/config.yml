@@ -1,20 +1,26 @@
+# The general prefix for the plugin
 prefix: '&8[&c&lVote&6&lNight&8] &r'
 
+# All worlds in which players should be able to skip the night.
 worlds:
   - 'world'
 
+# Just permissions:
+#   vote - The perm required to be able to vote.
+#   admin:
+#     forceskip - Forceskip the night.
+#     reload - Reload the config.
 perms:
   vote: VN.vote
   admin:
     forceskip: VN.forceskip
     reload: VN.reload
 
+# All messages that are sent:
 messages:
   vote:
-    - '&7Oh, seems like its night!'
-    - '&7Would you like to skip to &edaytime&7?'
-    - '&7If so use &a/skip&7 to enter your vote!'
-    - '&7There are {votes} required to skip the night!'
+    - '&7{member} voted to skip the night. (&d{totalvoted}&7/&5{required}&7)'
+    - '&7Use &a/skip&7 to vote to skip the night.'
   day:
     - '&7Well its hard to skip the night if its day!'
   noperms:
@@ -22,9 +28,7 @@ messages:
   success:
     - '&7You &asuccessfully&7 voted to skip the night!'
   skipping:
-    - '&aSkipping&7 the night as &d{totalvoted}&7/&5{totalplayers}&7 players voted to skip the night!'
-  notskipping:
-    - '&4Not skipping&7 the night as not enough players voted! &o(&d&o{totalvoted}&7&o/&5&o{totalplayers}&7&o)'
+    - '&aSkipping&7 the night as &d{required}&7 player(s) voted to skip the night!'
   forceskip:
     - '&aSuccessfully&7 skipped the night as this was requested by an administrator.'
   disabled:

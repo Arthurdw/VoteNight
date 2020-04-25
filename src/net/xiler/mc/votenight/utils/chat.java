@@ -13,4 +13,8 @@ public class chat {
         }
         return data;
     }
+
+    public static String parse(Plugin pl, String msg) {
+        return ChatColor.translateAlternateColorCodes('&', pl.getConfig().getString("prefix") + msg);
+    }
 }
