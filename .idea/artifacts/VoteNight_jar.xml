@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="VoteNight:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/VoteNight_jar</output-path>
+    <root id="archive" name="VoteNight.jar">
+      <element id="module-output" name="VoteNight" />
+    </root>
+  </artifact>
+</component>

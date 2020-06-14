@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="VoteNight">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/out/artifacts/VoteNight_jar/VoteNight.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

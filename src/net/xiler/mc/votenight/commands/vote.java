@@ -33,7 +33,7 @@ public class vote implements CommandExecutor {
                 else {
                     msg = chat.format(plugin, "messages.success");
                     plugin.add_voter(((Player) sender).getUniqueId().toString());
-                    if (plugin.get_voters().size() >= Math.round(Math.ceil(0.6*((Player) sender).getWorld().getPlayers().size()))) {
+                    if (plugin.get_voters().size() >= Math.round(Math.ceil(plugin.getConfig().getInt("required") / 100 *((Player) sender).getWorld().getPlayers().size()))) {
                         bc = plugin.getConfig().getStringList("messages.skipping").toArray(new String[0]);
                         ((Player) sender).getWorld().setTime(23850);
                         plugin.reset_voters();
@@ -46,7 +46,7 @@ public class vote implements CommandExecutor {
         if (bc != null) for (String message: bc) Bukkit.broadcastMessage(chat.parse(plugin, message)
                 .replace("{member}", ((Player) sender).getDisplayName())
                 .replace("{totalvoted}", String.valueOf(plugin.get_voters().size()))
-                .replace("{required}", String.valueOf(Math.round(Math.ceil(0.6*((Player) sender).getWorld().getPlayers().size())))));
+                .replace("{required}", String.valueOf(Math.round(Math.ceil(plugin.getConfig().getInt("required") / 100 *((Player) sender).getWorld().getPlayers().size())))));
         return false;
     }
 }

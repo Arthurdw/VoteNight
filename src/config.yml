@@ -5,6 +5,10 @@ prefix: '&8[&c&lVote&6&lNight&8] &r'
 worlds:
   - 'world'
 
+# The required % of votes to skip.
+# Max is 100 min is 1
+required: 60
+
 # Just permissions:
 #   vote - The perm required to be able to vote.
 #   admin:
@@ -19,7 +23,7 @@ perms:
 # All messages that are sent:
 messages:
   vote:
-    - '&7{member} voted to skip the night. (&d{totalvoted}&7/&5{required}&7)'
+    - '&7{member}&7 voted to skip the night. (&d{totalvoted}&7/&5{required}&7)'
     - '&7Use &a/skip&7 to vote to skip the night.'
   day:
     - '&7Well its hard to skip the night if its day!'

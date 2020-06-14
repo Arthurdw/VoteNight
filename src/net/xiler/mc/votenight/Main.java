@@ -17,9 +17,16 @@ public class Main extends JavaPlugin {
     public void onEnable() {
         PluginDescriptionFile pdfFile = this.getDescription();
         saveDefaultConfig();
-        new vote(this);
-        new ForceSkip(this);
-        getLogger().info(pdfFile.getName() + " Version: " + pdfFile.getVersion() + " is now enabled!");
+        if (!(0 < getConfig().getInt("required") && getConfig().getInt("required") <= 100)) {
+            getLogger().severe("The 'required' field value has to be between 1 & 100");
+            getLogger().info(pdfFile.getName() + " Version: " + pdfFile.getVersion() + " is now disabled!\n" +
+                    "The 'required' field value has to be between 1 & 100 (config.yml)");
+            getPluginLoader().disablePlugin(this);
+        } else {
+            new vote(this);
+            new ForceSkip(this);
+            getLogger().info(pdfFile.getName() + " Version: " + pdfFile.getVersion() + " is now enabled!");
+        }
     }
 
     @Override
