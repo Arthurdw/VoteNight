@@ -46,12 +46,13 @@ public class vote implements CommandExecutor {
         } else msg = chat.format(plugin, "messages.disabled");
         for (String message : msg) sender.sendMessage(message);
         if (resetted) {
-            plugin.reset_voters();
             for (String message : bc)
                 Bukkit.broadcastMessage(chat.parse(plugin, message)
                         .replace("{member}", ((Player) sender).getDisplayName())
                         .replace("{totalvoted}", String.valueOf(plugin.get_voters().size()))
                         .replace("{required}", String.valueOf(Math.round(Math.ceil(plugin.getConfig().getInt("required") / 100 * ((Player) sender).getWorld().getPlayers().size())))));
+
+            plugin.reset_voters();
         }
         return false;
     }
