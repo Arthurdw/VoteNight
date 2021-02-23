@@ -23,30 +23,36 @@ public class vote implements CommandExecutor {
             sender.sendMessage(chat.parse(plugin, "&4This command can only be executed by a player!"));
             return true;
         }
+        boolean resetted = false;
         String[] msg, bc = new String[0];
-        if (!sender.hasPermission(plugin.getConfig().getString("perms.vote"))) msg = chat.format(plugin, "messages.noperms");
+        if (!sender.hasPermission(plugin.getConfig().getString("perms.vote")))
+            msg = chat.format(plugin, "messages.noperms");
         else if (plugin.getConfig().getStringList("worlds").contains(((Player) sender).getWorld().getName())) {
             long time = ((Player) sender).getWorld().getTime();
             if (time < 12300 || time > 23850) msg = chat.format(plugin, "messages.day");
             else {
-                if (plugin.get_voters().contains(((Player) sender).getUniqueId().toString())) msg = chat.format(plugin, "messages.alreadyvoted");
+                if (plugin.get_voters().contains(((Player) sender).getUniqueId().toString()))
+                    msg = chat.format(plugin, "messages.alreadyvoted");
                 else {
                     msg = chat.format(plugin, "messages.success");
                     plugin.add_voter(((Player) sender).getUniqueId().toString());
-                    if (plugin.get_voters().size() >= Math.round(Math.ceil(plugin.getConfig().getInt("required") / 100 *((Player) sender).getWorld().getPlayers().size()))) {
+                    if (plugin.get_voters().size() >= Math.round(Math.ceil(plugin.getConfig().getInt("required") / 100 * ((Player) sender).getWorld().getPlayers().size()))) {
                         bc = plugin.getConfig().getStringList("messages.skipping").toArray(new String[0]);
                         ((Player) sender).getWorld().setTime(23850);
-                        plugin.reset_voters();
+                        resetted = true;
                     } else bc = plugin.getConfig().getStringList("messages.vote").toArray(new String[0]);
                 }
             }
+        } else msg = chat.format(plugin, "messages.disabled");
+        for (String message : msg) sender.sendMessage(message);
+        if (resetted) {
+            plugin.reset_voters();
+            for (String message : bc)
+                Bukkit.broadcastMessage(chat.parse(plugin, message)
+                        .replace("{member}", ((Player) sender).getDisplayName())
+                        .replace("{totalvoted}", String.valueOf(plugin.get_voters().size()))
+                        .replace("{required}", String.valueOf(Math.round(Math.ceil(plugin.getConfig().getInt("required") / 100 * ((Player) sender).getWorld().getPlayers().size())))));
         }
-        else msg = chat.format(plugin, "messages.disabled");
-        for (String message: msg) sender.sendMessage(message);
-        if (bc != null) for (String message: bc) Bukkit.broadcastMessage(chat.parse(plugin, message)
-                .replace("{member}", ((Player) sender).getDisplayName())
-                .replace("{totalvoted}", String.valueOf(plugin.get_voters().size()))
-                .replace("{required}", String.valueOf(Math.round(Math.ceil(plugin.getConfig().getInt("required") / 100 *((Player) sender).getWorld().getPlayers().size())))));
         return false;
     }
 }
